@@ -59,5 +59,21 @@ Sample json for search:
 }
 ```
 
+# Project Dependencies
+This project is dependent on another of my projects called "my-spring-boot-commons". 
+You can clone it from:
+```
+https://github.com/nmojir/my-spring-boot-commons.git
+````
+
+Or  download compiled jar file from:
+```
+https://github.com/nmojir/my-spring-boot-commons/releases/download/v0.0.1/my-spring-boot-commons-0.0.1.jar
+```
+and then install it on maven local repo with the following command:
+```
+mvn install:install-file -Dfile=my-spring-boot-commons-0.0.1.jar -DgroupId=ir.mojir -DartifactId=my-spring-boot-commons -Dversion=0.0.1 -Dpackaging=jar -DgeneratePom=true
+```
+
 
 Thanks for being here and any comments are appreciated.
