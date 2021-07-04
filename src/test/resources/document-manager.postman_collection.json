@@ -1,0 +1,86 @@
+{
+	"variables": [],
+	"info": {
+		"name": "document-manager",
+		"_postman_id": "872b64bb-5931-0506-95d7-666fdf8212af",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "search",
+			"request": {
+				"url": "http://localhost:8080/search",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"filters\": {\n\t\t\"fileName\": \"\"\n\t},\n\t\"paging\": {\n\t\t\"pageNumber\": 0,\n\t\t\"pageSize\": 3\n\t},\n\t\"sorting\": {\n\t\t\"sortField\": \"fileName\",\n\t\t\"ascending\": true\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "upload-multipart",
+			"request": {
+				"url": "http://localhost:8080/upload",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/mixed",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"value": "",
+							"description": "",
+							"type": "file"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "upload binary",
+			"request": {
+				"url": "http://localhost:8080/upload",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": ""
+					}
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "download",
+			"request": {
+				"url": "http://localhost:8080/download/34",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
