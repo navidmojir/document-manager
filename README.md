@@ -13,7 +13,7 @@
 
 
 # Web Methods
-In the following section web services are introduced. Sample postman files are also available at src/test/resources directory.
+In the following section web services are introduced. Sample **postman** files are also available at src/test/resources directory.
 
 ## upload
 ```
