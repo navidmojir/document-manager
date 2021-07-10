@@ -10,6 +10,10 @@
  ```
  java -jar document-manager-0.0.1.jar
  ```
+ To run the service with external configuration file and in background (linux environment):
+ ```
+ java -jar document-manager-0.0.1.jar --spring.config.location=application.properties & disown
+ ```
 
 
 # Web Methods
@@ -75,5 +79,11 @@ and then install it on maven local repo with the following command:
 mvn install:install-file -Dfile=my-spring-boot-commons-0.0.1.jar -DgroupId=ir.mojir -DartifactId=my-spring-boot-commons -Dversion=0.0.1 -Dpackaging=jar -DgeneratePom=true
 ```
 
+# Authentication and authorization using keycloak
+The application is integrated with keycloak authorization server to support authentication and authorization. This feature can be enabled by setting the following option to true in application.properties file. Other parameters must also be configured correctly using keycloak project documentation.
+
+```
+keycloak.enabled = true
+```
 
 Thanks for being here and any comments are appreciated.
