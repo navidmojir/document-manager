@@ -10,6 +10,10 @@
  ```
  java -jar document-manager-0.0.1.jar
  ```
+ To run the service with external configuration file and in background (linux environment):
+ ```
+ java -jar document-manager-0.0.1.jar --spring.config.location=application.properties & disown
+ ```
 
 
 # Web Methods
