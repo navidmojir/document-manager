@@ -1,5 +1,7 @@
 package ir.mojir.document_manager.rest_controllers;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +47,8 @@ public class DocumentController {
 	{
 		Document document = documentService.download(id);
 		ByteArrayResource resource = new ByteArrayResource(document.getBytes());
-		return ResponseEntity.ok().header("Content-Disposition", "filename=" + document.getFileName())
+		String fileName = URLEncoder.encode(document.getFileName(), StandardCharsets.UTF_8);
+		return ResponseEntity.ok().header("Content-Disposition", "filename=" + fileName)
 				.body(resource);
 	}
 	
