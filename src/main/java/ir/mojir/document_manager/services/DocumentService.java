@@ -32,13 +32,6 @@ public class DocumentService {
 	{
 		try 
 		{
-//			Document document = new Document();
-//			document.setFileName(file.getOriginalFilename().toLowerCase());
-//			Document savedDocument = documentRepo.save(document);
-//		
-//			
-//			Files.write(Paths.get(getFilePath(savedDocument.getId())), file.getBytes());
-//			
 			return upload(file.getOriginalFilename(), file.getBytes());
 		} catch (Exception e) {
 			throw new UploadFailedException("Failed to upload. Details: " + e.getMessage(), e);
@@ -50,7 +43,8 @@ public class DocumentService {
 		try 
 		{
 			Document document = new Document();
-			document.setFileName(fileName.toLowerCase());
+			document.setFileName(fileName.toLowerCase());			
+			document.setFileExtension(getFileExtenstion(fileName));
 			Document savedDocument = documentRepo.save(document);
 		
 			
@@ -60,6 +54,13 @@ public class DocumentService {
 		} catch (Exception e) {
 			throw new UploadFailedException("Failed to upload. Details: " + e.getMessage(), e);
 		}
+	}
+
+	private String getFileExtenstion(String fileName) {
+		String[] splitted = fileName.split("[.]");
+		if(splitted.length > 1)
+			return splitted[splitted.length - 1];
+		return "";
 	}
 
 	public Document download(long id) {
@@ -73,7 +74,7 @@ public class DocumentService {
 		}
 	}
 	
-	private Document findById(long id)
+	public Document findById(long id)
 	{
 		Optional<Document> optDoc = documentRepo.findById(id);
 		if(optDoc.isEmpty())

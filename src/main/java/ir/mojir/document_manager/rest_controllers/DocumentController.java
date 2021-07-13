@@ -59,4 +59,10 @@ public class DocumentController {
 		return ResponseEntity.ok().header("X-TOTAL-COUNT", String.valueOf(result.getTotalElements()))
 				.body(result.getContent());
 	}
+	
+	@GetMapping("/documents/{id}")
+	public Document getDocument(@PathVariable long id)
+	{
+		return documentService.findById(id);
+	}
 }

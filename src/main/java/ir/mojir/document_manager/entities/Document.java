@@ -16,6 +16,8 @@ public class Document {
 	
 	private String fileName;
 	
+	private String fileExtension;
+	
 	@Transient
 	@JsonIgnore
 	private byte[] bytes;
@@ -44,5 +46,14 @@ public class Document {
 		this.bytes = bytes;
 	}
 
+	public String getFileExtension() {
+		return fileExtension;
+	}
+
+	public void setFileExtension(String fileExtension) {
+		this.fileExtension = fileExtension;
+	}
+
+	
 	
 }
