@@ -1,0 +1,14 @@
+= Document Manager API Documentation
+:toc: left
+
+== Search
+include::{snippets}/search/request-fields.adoc[]
+include::{snippets}/search/request-body.adoc[]
+include::{snippets}/search/response-fields.adoc[]
+include::{snippets}/search/http-response.adoc[]
+
+== Get
+include::{snippets}/get/path-parameters.adoc[]
+
+== Multipart upload
+include::{snippets}/upload-multipart/request-parts.adoc[]
