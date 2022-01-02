@@ -57,14 +57,14 @@ public class DocumentControllerTest {
 				));
 	}
 	
-	@Test
-	public void getTest() throws Exception {
-		mockMvc.perform(RestDocumentationRequestBuilders.get("/documents/{documentId}", "1"))
-			.andExpect(status().isOk())
-			.andDo(document("get", pathParameters(
-					parameterWithName("documentId").description("The ID of the doument")
-		)));
-	}
+//	@Test
+//	public void getTest() throws Exception {
+//		mockMvc.perform(RestDocumentationRequestBuilders.get("/documents/{documentId}", "1"))
+//			.andExpect(status().isOk())
+//			.andDo(document("get", pathParameters(
+//					parameterWithName("documentId").description("The ID of the doument")
+//		)));
+//	}
 	
 	@Test
 	public void multipartUploadTest() throws Exception {
