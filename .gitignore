@@ -34,3 +34,4 @@ build/
 
 db.mv.db
 files
+db.trace.db

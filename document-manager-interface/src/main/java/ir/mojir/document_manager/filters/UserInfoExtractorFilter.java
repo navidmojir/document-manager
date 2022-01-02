@@ -12,12 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.keycloak.KeycloakSecurityContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import ir.mojir.spring_boot_commons.dtos.ThreadContextData;
 import ir.mojir.spring_boot_commons.helpers.LocalThreadContext;
 
-@Component
+//@Component
 public class UserInfoExtractorFilter implements Filter{
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserInfoExtractorFilter.class);
