@@ -95,4 +95,9 @@ public class DocumentService {
 		return documentRepo.findAllByFileNameContaining(req.getFilters().getFileName(),
 				RepositoryHelper.generatePageRequestWithSort(req.getPaging(), req.getSorting()));
 	}
+
+	public void delete(long id) {
+		documentRepo.delete(findById(id));
+		
+	}
 }
