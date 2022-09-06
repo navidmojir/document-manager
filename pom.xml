@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>ir.mojir</groupId>
 	<artifactId>document-manager</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.2</version>
 	<description>A simple document manager service for uploading an
 		downloading files via REST endpoint
 	</description>
