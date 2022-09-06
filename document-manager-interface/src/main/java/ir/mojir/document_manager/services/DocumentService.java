@@ -5,6 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,8 @@ import ir.mojir.spring_boot_commons.helpers.RepositoryHelper;
 
 @Service
 public class DocumentService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(DocumentService.class);
 	
 	@Autowired
 	private DocumentRepo documentRepo;
@@ -50,6 +54,8 @@ public class DocumentService {
 			
 			Files.write(Paths.get(getFilePath(savedDocument.getId())), file);
 			
+			logger.info("Document with filename {} was uploaded successfully", fileName);
+			
 			return savedDocument;
 		} catch (Exception e) {
 			throw new UploadFailedException("Failed to upload. Details: " + e.getMessage(), e);
@@ -67,6 +73,7 @@ public class DocumentService {
 		try {
 			Document document = findById(id);
 			document.setBytes(Files.readAllBytes(Paths.get(getFilePath(id))));
+			logger.trace("Document with id {} was downloaded.", id);
 			return document;
 		} catch (IOException e) {
 			throw new InternalErrorException("An IO error occured while downloading file. Details: " + 
@@ -98,6 +105,6 @@ public class DocumentService {
 
 	public void delete(long id) {
 		documentRepo.delete(findById(id));
-		
+		logger.info("Document with id {} was deleted", id);
 	}
 }
