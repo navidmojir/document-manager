@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>ir.mojir</groupId>
 	<artifactId>document-manager</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 	<description>A simple document manager service for uploading an
 		downloading files via REST endpoint
 	</description>
@@ -26,7 +26,7 @@
 			<dependency>
 				<groupId>ir.mojir</groupId>
 				<artifactId>my-spring-boot-commons</artifactId>
-				<version>0.0.2</version>
+				<version>0.0.9</version>
 			</dependency>
 
 			<dependency>
