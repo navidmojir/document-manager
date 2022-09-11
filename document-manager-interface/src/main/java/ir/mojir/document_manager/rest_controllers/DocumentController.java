@@ -43,6 +43,12 @@ public class DocumentController {
 		return documentService.upload("untitled", file);
 	}
 	
+	@PostMapping(path = "/upload/{fileName}", consumes = "application/octet-stream")
+	public Document uploadBinary(@RequestBody byte[] file, @PathVariable String fileName)
+	{
+		return documentService.upload(fileName, file);
+	}
+	
 	@GetMapping(path = "/download/{id}", produces = "application/octet-stream")
 	public ResponseEntity<Resource> download(@PathVariable long id)
 	{
