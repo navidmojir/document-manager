@@ -1,5 +1,9 @@
 package ir.mojir.document_manager.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +25,11 @@ public class Document {
 	@Transient
 	@JsonIgnore
 	private byte[] bytes;
+	
+	private String creatorUser;
+	
+	@ElementCollection
+	private Set<String> grantedUsers;
 	
 	public long getId() {
 		return id;
@@ -53,6 +62,35 @@ public class Document {
 	public void setFileExtension(String fileExtension) {
 		this.fileExtension = fileExtension;
 	}
+
+	public String getCreatorUser() {
+		return creatorUser;
+	}
+
+	public void setCreatorUser(String creatorUser) {
+		this.creatorUser = creatorUser;
+	}
+
+	public Set<String> getGrantedUsers() {
+		return grantedUsers;
+	}
+
+	public void setGrantedUsers(Set<String> grantedUsers) {
+		this.grantedUsers = grantedUsers;
+	}
+	
+	public void addGrantedUser(String username) {
+		if(this.grantedUsers == null)
+			this.grantedUsers = new HashSet<>();
+		this.grantedUsers.add(username);
+	}
+	
+	public void removeGrantedUser(String username) {
+		if(this.grantedUsers == null)
+			return;
+		this.grantedUsers.remove(username);
+	}
+
 
 	
 	

@@ -3,7 +3,8 @@ package ir.mojir.document_manager.enums;
 import ir.mojir.spring_boot_commons.interfaces.IError;
 
 public enum Errors implements IError {
-	UPLOAD_FAILED(201);
+	UPLOAD_FAILED(201),
+	ACCESS_DENIED(202);
 
 	private int code;
 	

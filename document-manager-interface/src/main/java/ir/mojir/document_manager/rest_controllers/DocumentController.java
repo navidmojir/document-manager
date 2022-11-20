@@ -2,12 +2,10 @@ package ir.mojir.document_manager.rest_controllers;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import ir.mojir.document_manager.dtos.FileSearchFilters;
 import ir.mojir.document_manager.entities.Document;
 import ir.mojir.document_manager.services.DocumentService;
-import ir.mojir.spring_boot_commons.dtos.SearchDto;
 
 @RestController
 //@CrossOrigin
@@ -58,13 +54,13 @@ public class DocumentController {
 				.body(resource);
 	}
 	
-	@PostMapping("/search")
-	public ResponseEntity<List<Document>> search(@RequestBody SearchDto<FileSearchFilters> req)
-	{
-		Page<Document> result = documentService.search(req);
-		return ResponseEntity.ok().header("X-TOTAL-COUNT", String.valueOf(result.getTotalElements()))
-				.body(result.getContent());
-	}
+//	@PostMapping("/search")
+//	public ResponseEntity<List<Document>> search(@RequestBody SearchDto<FileSearchFilters> req)
+//	{
+//		Page<Document> result = documentService.search(req);
+//		return ResponseEntity.ok().header("X-TOTAL-COUNT", String.valueOf(result.getTotalElements()))
+//				.body(result.getContent());
+//	}
 	
 	@GetMapping("/documents/{id}")
 	public Document getDocument(@PathVariable long id)
@@ -75,5 +71,10 @@ public class DocumentController {
 	@DeleteMapping("/documents/{id}")
 	public void delete(@PathVariable long id) {
 		this.documentService.delete(id);
+	}
+	
+	@PostMapping("/documents/{id}/grantAccessTo/{username}")
+	public void grantAccessToUser(@PathVariable long id, @PathVariable String username) {
+		this.documentService.grantAccessToUser(id, username);
 	}
 }
