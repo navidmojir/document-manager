@@ -13,7 +13,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -40,7 +39,7 @@ public class DocumentControllerTest {
 	private MockMvc mockMvc;
 	
 	
-	@Test
+//	@Test
 	public void searchTest() throws Exception {
 		SearchDto<FileSearchFilters> req = new SearchDto<>();
 		FileSearchFilters filters = new FileSearchFilters();
@@ -67,7 +66,7 @@ public class DocumentControllerTest {
 //		)));
 //	}
 	
-	@Test
+//	@Test
 	public void multipartUploadTest() throws Exception {
 		mockMvc.perform(multipart("/upload").file("file", "fileContent".getBytes()))
 			.andExpect(status().isOk())
