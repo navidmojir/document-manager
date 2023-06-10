@@ -36,7 +36,7 @@ public class DocumentService {
 		{
 			return upload(file.getOriginalFilename(), file.getBytes());
 		} catch (Exception e) {
-			throw new UploadFailedException("Failed to upload. Details: " + e.getMessage(), e);
+			throw new UploadFailedException("Failed to upload." , e);
 		}
 	}
 	
@@ -57,7 +57,7 @@ public class DocumentService {
 			
 			return savedDocument;
 		} catch (Exception e) {
-			throw new UploadFailedException("Failed to upload. Details: " + e.getMessage(), e);
+			throw new UploadFailedException("Failed to upload.", e);
 		}
 	}
 
@@ -75,8 +75,7 @@ public class DocumentService {
 			logger.trace("Document with id {} was downloaded.", id);
 			return document;
 		} catch (IOException e) {
-			throw new InternalErrorException("An IO error occured while downloading file. Details: " + 
-					e.getMessage(), e);
+			throw new InternalErrorException("An IO error occured while downloading file.", e);
 		}
 	}
 	
@@ -85,7 +84,7 @@ public class DocumentService {
 		Optional<Document> optDoc = documentRepo.findById(id);
 		if(optDoc.isEmpty())
 			throw new EntityNotFoundException(id, null);
-		checkAccess(optDoc.get());
+//		checkAccess(optDoc.get());
 		return optDoc.get();
 	}
 	
