@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import ir.mojir.document_manager.entities.Document;
-import ir.mojir.document_manager.exceptions.AccessDeniedException;
 import ir.mojir.document_manager.exceptions.UploadFailedException;
 import ir.mojir.document_manager.repositories.DocumentRepo;
 import ir.mojir.spring_boot_commons.exceptions.EntityNotFoundException;
@@ -107,17 +106,17 @@ public class DocumentService {
 		logger.info("Document with id {} was deleted", id);
 	}
 	
-	private void checkAccess(Document document) {
-		String currentUser = LocalThreadContext.getData().getUsername();
-		if(document.getCreatorUser().equalsIgnoreCase(currentUser))
-			return;
-		
-		if(document.getGrantedUsers() != null && document.getGrantedUsers().contains(currentUser))
-			return;
-		
-		throw new AccessDeniedException(String.format("User %s has not access to document with id %d", 
-				currentUser, document.getId()));
-	}
+//	private void checkAccess(Document document) {
+//		String currentUser = LocalThreadContext.getData().getUsername();
+//		if(document.getCreatorUser().equalsIgnoreCase(currentUser))
+//			return;
+//		
+//		if(document.getGrantedUsers() != null && document.getGrantedUsers().contains(currentUser))
+//			return;
+//		
+//		throw new AccessDeniedException(String.format("User %s has not access to document with id %d", 
+//				currentUser, document.getId()));
+//	}
 	
 	public void grantAccessToUser(long documentId, String username) {
 		Document document = findById(documentId);
