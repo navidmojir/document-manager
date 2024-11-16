@@ -2,19 +2,19 @@ package ir.mojir.document_manager.filters;
 
 import java.io.IOException;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-
-import org.keycloak.KeycloakSecurityContext;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
 
+import ir.mojir.spring_boot_commons.dtos.SimpleJwtToken;
 import ir.mojir.spring_boot_commons.dtos.ThreadContextData;
 import ir.mojir.spring_boot_commons.helpers.LocalThreadContext;
+import ir.mojir.spring_boot_commons.helpers.SimpleJwtDecoder;
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Component
 public class UserInfoExtractorFilter implements Filter{
@@ -28,12 +28,14 @@ public class UserInfoExtractorFilter implements Filter{
 		
 		HttpServletRequest httpServletReq = (HttpServletRequest)request;
 		
-		KeycloakSecurityContext secutiryContext = (KeycloakSecurityContext)httpServletReq.getAttribute(
-				KeycloakSecurityContext.class.getName());
+//		KeycloakSecurityContext secutiryContext = (KeycloakSecurityContext)httpServletReq.getAttribute(
+//				KeycloakSecurityContext.class.getName());
 		
-		String username = secutiryContext.getToken().getPreferredUsername();
+		SimpleJwtToken jwtToken = SimpleJwtDecoder.decode(httpServletReq.getHeader("Authorization"));
+		
+		String username = jwtToken.getPreferredUsername();
 		ThreadContextData threadContextData = new ThreadContextData();
-		threadContextData.setAccessToken(secutiryContext.getTokenString());
+		threadContextData.setAccessToken(jwtToken.getTokenStr());
 		threadContextData.setUsername(username);
         LocalThreadContext.setData(threadContextData);
         

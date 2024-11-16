@@ -8,7 +8,7 @@
         class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>
-                %d{ISO8601} %-5level ${MODULE_NAME} %X{username} [%t] %C{1.}: %msg%n%throwable
+                %d{ISO8601} %-5level ${MODULE_NAME} %X{username} [%t] %C: %msg%n%throwable
             </Pattern>
         </layout>
     </appender>
@@ -18,7 +18,7 @@
         <file>${LOGS}/${MODULE_NAME}.log</file>
         <encoder
             class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
+            <Pattern>%d %p %C [%t] %m%n</Pattern>
         </encoder>
 
         <rollingPolicy
@@ -27,7 +27,7 @@
             <fileNamePattern>${LOGS}/archived/${MODULE_NAME}-%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
-                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFileNamingAndTriggeringPolicy">
                 <maxFileSize>10MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
